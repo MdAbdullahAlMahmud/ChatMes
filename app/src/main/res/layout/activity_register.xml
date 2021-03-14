@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -57,12 +58,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/loginCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <EditText
+            android:id="@+id/registrationFirstNameEDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -76,6 +78,7 @@
             android:textColorHint="#90ffffff" />
 
         <EditText
+            android:id="@+id/registrationLastNameEDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -89,7 +92,7 @@
             android:textColorHint="#90ffffff" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/loginEmailEDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -103,6 +106,7 @@
             android:textColorHint="#90ffffff" />
 
         <EditText
+            android:id="@+id/registrationPasswordEDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -116,6 +120,7 @@
             android:textColorHint="#90ffffff" />
 
         <EditText
+            android:id="@+id/registrationConfirmPasswordEDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -130,7 +135,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/button"
+        android:id="@+id/loginCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

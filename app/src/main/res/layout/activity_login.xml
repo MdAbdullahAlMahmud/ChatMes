@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/chat_book_logo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/loginEmailEdt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -31,12 +31,12 @@
         android:hint="Email"
         android:textColorHint="#90ffffff"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintBottom_toTopOf="@+id/loginPassEdt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/loginPassEdt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -48,12 +48,12 @@
         android:inputType="textPassword"
         android:hint="Password"
         android:textColorHint="#90ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/loginCardViewButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/button"
+        android:id="@+id/loginCardViewButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
@@ -89,8 +89,8 @@
         android:layout_marginEnd="8dp"
         android:text="forgot password ?"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/loginCardViewButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginCardViewButton" />
 
     <TextView
         android:id="@+id/signUpTV"
@@ -112,8 +112,8 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/loginEmailEdt"
+        app:layout_constraintStart_toStartOf="@+id/loginEmailEdt"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
