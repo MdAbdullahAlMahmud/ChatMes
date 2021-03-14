@@ -87,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         reference= FirebaseDatabase.getInstance().getReference();
         mAuth= FirebaseAuth.getInstance();
         userList= new ArrayList<>();
+        //for new git changes
     }
 
 }
