@@ -1,6 +1,7 @@
 package com.mkrlabs.chatmes.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mkrlabs.chatmes.ChatActivity;
 import com.mkrlabs.chatmes.R;
 import com.mkrlabs.chatmes.model.User;
 
@@ -40,7 +42,7 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
 
         User user = userList.get(position);
 
-        holder.userName.setText(user.userFullName());
+        holder.userName.setText(user.getUserFullName());
         holder.userLastMessage.setText("last Message");
         holder.lastMessageTime.setText("00.00 AM ");
         if(user.isStatus()){
@@ -50,6 +52,17 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
         }
         Glide.with(context).load(user.getImageUrl())
                 .into(holder.userImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("RUID",user.getUid());
+                intent.putExtra("NAME",user.getUserFullName());
+                intent.putExtra("USER_IMAGE",user.getImageUrl());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

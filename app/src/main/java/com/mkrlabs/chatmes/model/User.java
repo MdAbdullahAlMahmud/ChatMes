@@ -6,6 +6,7 @@ public class User {
     private String email;
     private String imageUrl;
     private String uid;
+    private long lastSeenTime;
     private boolean status;
 
     public User(String firstName, String lastName, String email, String imageUrl, String uid, boolean status) {
@@ -14,6 +15,16 @@ public class User {
         this.email = email;
         this.imageUrl = imageUrl;
         this.uid = uid;
+        this.status = status;
+    }
+
+    public User(String firstName, String lastName, String email, String imageUrl, String uid, long lastSeenTime, boolean status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.uid = uid;
+        this.lastSeenTime = lastSeenTime;
         this.status = status;
     }
 
@@ -68,7 +79,15 @@ public class User {
         this.status = status;
     }
 
-    public  String userFullName(){
+    public  String getUserFullName(){
         return  firstName+ " "+ lastName;
+    }
+
+    public long getLastSeenTime() {
+        return lastSeenTime;
+    }
+
+    public void setLastSeenTime(long lastSeenTime) {
+        this.lastSeenTime = lastSeenTime;
     }
 }
