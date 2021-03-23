@@ -4,16 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.mkrlabs.chatmes.R;
 import com.mkrlabs.chatmes.databinding.MessageReceiveBinding;
 import com.mkrlabs.chatmes.databinding.MessageSendBinding;
 import com.mkrlabs.chatmes.model.Message;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,8 +38,7 @@ public class MessageAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position){
         Message message = messageList.get(position);
         if (holder.getClass() == SenderViewHolder.class){
             SenderViewHolder senderViewHolder = (SenderViewHolder)holder;

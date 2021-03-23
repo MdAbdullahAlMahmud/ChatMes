@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/chat_book_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatMes">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".FriendActivity"></activity>
+        <activity android:name=".AddFriendActivity" />
+        <activity android:name=".ChatActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
@@ -29,9 +31,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
