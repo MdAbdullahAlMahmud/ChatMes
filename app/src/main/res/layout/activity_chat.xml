@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".ChatActivity"
+    android:background="#DDDDDD"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/chat_toolbar"
@@ -62,81 +64,103 @@
 
 
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chat_toolbar" />
 
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/typingAnimationView"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/typing" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:elevation="2dp"
-            app:cardCornerRadius="25dp"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:orientation="horizontal"
-                android:paddingStart="15dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="5dp">
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="2dp"
+                app:cardCornerRadius="25dp">
 
-                <EditText
-                    android:id="@+id/messageEdt"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:hint="Type a message"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:paddingStart="5dp" />
-                <ImageView
-                    android:id="@+id/sendImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="5dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="true"
-                    android:foreground="?android:selectableItemBackground"
-                    app:srcCompat="@drawable/ic_baseline_image_24" />
+                    android:orientation="horizontal"
+                    android:paddingStart="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="5dp">
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:id="@+id/messageEdt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="Type a message"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:paddingStart="5dp" />
+
+                    <ImageView
+                        android:id="@+id/sendImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:foreground="?android:selectableItemBackground"
+                        android:paddingEnd="5dp"
+                        app:srcCompat="@drawable/ic_baseline_image_24" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/messageSendFloatingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_baseline_send_24"
-            android:backgroundTint="@color/primaryColor"
-            app:tint="@color/white"
-            android:elevation="2dp"
-            app:elevation="2dp"
-            />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/messageSendFloatingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/primaryColor"
+                android:elevation="2dp"
+                android:src="@drawable/ic_baseline_send_24"
+                app:elevation="2dp"
+                app:tint="@color/white" />
+
+        </LinearLayout>
 
 
 

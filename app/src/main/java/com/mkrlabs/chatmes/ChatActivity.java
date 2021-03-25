@@ -4,9 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,8 +73,65 @@ public class ChatActivity extends AppCompatActivity {
                 textMessageSent();
             }
         });
-        adapter = new MessageAdapter(ChatActivity.this,messages);
+        checkMessageTypingStatus();
+        adapter = new MessageAdapter(ChatActivity.this,messages,receiverImage);
         binding.chatRV.setAdapter(adapter);
+    }
+
+    private void checkMessageTypingStatus() {
+        binding.messageEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    Log.v("Typing","Not Typing");
+                   updateTypingStatus(false);
+                }else {
+                    Log.v("Typing","Typing");
+                    updateTypingStatus(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+        reference.child("chats").child(receiverRoom).child("isTyping").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    boolean typingStatus = (boolean)snapshot.getValue();
+                    if(typingStatus){
+                        binding.typingAnimationView.setVisibility(View.VISIBLE);
+                    }else {
+                        binding.typingAnimationView.setVisibility(View.GONE);
+                    }
+                }else {
+                    Toast.makeText(ChatActivity.this, "No Child", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ChatActivity.this, "Error " + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    private void updateTypingStatus(boolean isTyping) {
+        HashMap<String,Object> typingMap = new HashMap<>();
+        typingMap.put("isTyping",isTyping);
+        reference.child("chats").child(senderRoom).updateChildren(typingMap);
     }
 
     private void init() {
@@ -91,33 +153,14 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
-    public static void  setUserStatus(boolean status){
-        Date  date = Calendar.getInstance().getTime();
-        HashMap<String,Object> statusmap = new HashMap<>();
-        statusmap.put("status",status);
-        statusmap.put("lastSeenTime",date.getTime());
-        reference.child("Users").child(mAuth.getCurrentUser().getUid())
-                .updateChildren(statusmap);
 
 
-    }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setUserStatus(true);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        setUserStatus(false);
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        setUserStatus(true);
         changeActiveStatusTime();
         fetchAllMessage();
     }
@@ -169,7 +212,27 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUserStatus(true);
+    }
 
+    public  void  setUserStatus(boolean status){
+        Date date = Calendar.getInstance().getTime();
+        HashMap<String,Object> statusmap = new HashMap<>();
+        statusmap.put("status",status);
+        statusmap.put("lastSeenTime",date.getTime());
+        reference.child("Users").child(mAuth.getCurrentUser().getUid())
+                .updateChildren(statusmap);
+
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setUserStatus(false);
+    }
     private void  textMessageSent(){
         Date date = Calendar.getInstance().getTime();
          String usermessage=null;
@@ -190,6 +253,13 @@ public class ChatActivity extends AppCompatActivity {
                              .setValue(message);
                  }
              });
+
+             HashMap<String,Object> lastMsgMap = new HashMap<>();
+             lastMsgMap.put("lastMessage",usermessage);
+             lastMsgMap.put("timestamp",date.getTime());
+
+             reference.child("chats").child(senderRoom).updateChildren(lastMsgMap);
+             reference.child("chats").child(receiverRoom).updateChildren(lastMsgMap);
 
          }else {
              binding.messageEdt.setError("required");

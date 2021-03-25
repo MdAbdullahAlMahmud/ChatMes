@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mkrlabs.chatmes.R;
 import com.mkrlabs.chatmes.databinding.MessageReceiveBinding;
@@ -18,10 +21,12 @@ public class MessageAdapter extends RecyclerView.Adapter{
     final  int ITEM_RECEIVE=2;
     private Context context;
     private List<Message> messageList;
+    private String userImageUrl;
 
-    public MessageAdapter(Context context, List<Message> messageList) {
+    public MessageAdapter(Context context, List<Message> messageList,String userImageUrl) {
         this.context = context;
         this.messageList = messageList;
+        this.userImageUrl=userImageUrl;
     }
 
     @NonNull
@@ -47,6 +52,8 @@ public class MessageAdapter extends RecyclerView.Adapter{
         }else {
             ReceiverViewHolder receiverViewHolder = (ReceiverViewHolder)holder;
             receiverViewHolder.messageReceiveBinding.receiveMessageItem.setText(message.getMessage());
+            Glide.with(context).load(userImageUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(receiverViewHolder.messageReceiveBinding.receiveMessageItemImage);
         }
 
 

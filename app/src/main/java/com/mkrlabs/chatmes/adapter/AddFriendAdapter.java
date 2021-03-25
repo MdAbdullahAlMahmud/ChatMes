@@ -67,6 +67,7 @@ public class AddFriendAdapter extends RecyclerView.Adapter<AddFriendAdapter.AddF
                 usermap.put("uid",mAuth.getCurrentUser().getUid());
                 usermap.put("name",mAuth.getCurrentUser().getDisplayName());
                 usermap.put("timestamp",date.getTime());
+                usermap.put("requestKey",key);
 
                 reference.child("Users").child(user_uid).child("request").child(key)
                         .updateChildren(usermap)

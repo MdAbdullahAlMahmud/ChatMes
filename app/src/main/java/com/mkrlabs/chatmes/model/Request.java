@@ -5,10 +5,21 @@ public class Request {
     private String uid;
     private  long timestamp;
 
-    public Request(String name, String uid, long timestamp) {
+    public Request(String name, String uid, long timestamp, String requestKey) {
         this.name = name;
         this.uid = uid;
         this.timestamp = timestamp;
+        this.requestKey = requestKey;
+    }
+
+    private  String requestKey;
+
+    public String getRequestKey() {
+        return requestKey;
+    }
+
+    public void setRequestKey(String requestKey) {
+        this.requestKey = requestKey;
     }
 
     public Request() {

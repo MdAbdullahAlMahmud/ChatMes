@@ -9,6 +9,8 @@
     android:gravity="start"
     android:orientation="vertical"
     >
+
+
     <LinearLayout
         android:id="@+id/receiverMessageTextLayout"
         android:layout_width="match_parent"
@@ -18,9 +20,10 @@
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/receive_message_item_image"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -38,6 +41,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
+                android:layout_marginStart="7dp"
                 android:text="This is receiver"
                 android:textColor="@color/primaryColor"
                 app:layout_constraintBottom_toBottomOf="parent"

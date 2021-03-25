@@ -33,7 +33,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/add_friend_button"
+        android:background="@drawable/solid_round_button"
         android:text="Add Friend"
         android:textAllCaps="false"
         android:textColor="@color/white"
